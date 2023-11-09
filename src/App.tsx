@@ -15,7 +15,7 @@ export default function Landing() {
 
     setTimeout(() => {
       setLoadingStatus(false)
-    }, 5000)
+    }, 1000)
   }
 
   const setCurrentImageCustom = (value: any) => {
@@ -71,7 +71,7 @@ export default function Landing() {
             loading={isLoading}
             loadingPosition="center"
             variant="contained"
-            sx={{ width: '100%', borderRadius: '1rem', padding: '.5rem', fontSize: '1rem', '@media(min-width: 769px)': { width: '50%' } }}
+            sx={{ width: '100%', borderRadius: '100px', padding: '.5rem', fontSize: '1rem', '@media(min-width: 769px)': { width: '50%' } }}
             onClick={connectToFB}
           >
             <span>Connect to Facebook</span>
@@ -144,21 +144,25 @@ export default function Landing() {
               ))}
             </Box>
           </Box>
-          <Divider sx={{margin: '4rem 0'}} />
-          <Box 
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+          <Divider sx={{ margin: '4rem 0' }} />
+          <Card
+            variant='outlined'
+            component='fieldset'
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: selectedImage ? 'auto' : 'none'
+            }}>
             {selectedImage &&
               <>
+                <legend style={{ textAlign: 'start', color: 'GrayText' }}>Selected Image</legend>
                 <img src={selectedImage} style={{ maxHeight: '315px', width: 'auto', objectFit: 'contain', marginBottom: '1rem' }} />
                 <Button sx={{ textDecoration: 'underline !important' }} variant='text' onClick={() => setCurrentImageCustom(null)}>Remove selected Image</Button>
               </>
             }
-          </Box>
+          </Card>
         </CardContent>
       </Card>
     </Box>
